@@ -2,57 +2,58 @@ package Question3;
 
 public class Course {
     private String courseName;
-    private Instructor[] instructors;
-    private Textbook[] textbooks;
+    private Instructor instructor;
+    private Textbook textbook;
 
-    public Course(String courseName, int numInstructors, int numTextbooks) {
+    private String instructorFirstName;
+    private String instructorLastName;
+    private String instructorOfficeNumber;
+
+    private String textbookTitle;
+    private String textbookAuthor;
+    private String textbookPublisher;
+
+    public Course(String courseName, Instructor instructor, Textbook textbook) {
         this.courseName = courseName;
-        this.instructors = new Instructor[numInstructors];
-        this.textbooks = new Textbook[numTextbooks];
+        this.instructor = instructor;
+        this.textbook = textbook;
     }
 
     public String getCourseName() {
         return courseName;
     }
 
-    public Instructor[] getInstructors() {
-        return instructors;
+    public Instructor getInstructor() {
+        return instructor;
     }
 
-    public Textbook[] getTextbooks() {
-        return textbooks;
+    public Textbook getTextbook() {
+        return textbook;
     }
 
     public void setCourseName(String courseName) {
         this.courseName = courseName;
     }
 
-    public void setInstructor(int index, Instructor instructor) {
-        if (index >= 0 && index < instructors.length) {
-            instructors[index] = instructor;
-        }
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
+        this.instructorFirstName = instructor.getFirstName();
+        this.instructorLastName = instructor.getLastName();
+        this.instructorOfficeNumber = instructor.getOfficeNumber();
     }
 
-    public void setTextbook(int index, Textbook textbook) {
-        if (index >= 0 && index < textbooks.length) {
-            textbooks[index] = textbook;
-        }
+    public void setTextbook(Textbook textbook) {
+        this.textbook = textbook;
+        this.textbookTitle = textbook.getTitle();
+        this.textbookAuthor = textbook.getAuthor();
+        this.textbookPublisher = textbook.getPublisher();
     }
 
     public void print() {
-        System.out.println("\nCourse Name: " + courseName +"\n");
-        System.out.println("\nInstructors:\n");
-        for (Instructor instructor : instructors) {
-            if (instructor != null) {
-                System.out.println("Instructor Name: " + instructor.getFirstName() + " " + instructor.getLastName() +
-                        ", Office Number: " + instructor.getOfficeNumber());
-            }
-        }
-        System.out.println("\nTextbooks:\n");
-        for (Textbook textbook : textbooks) {
-            if (textbook != null) {
-                System.out.println("Textbook Title: " + textbook.getTitle() + ", Author: " + textbook.getAuthor() + ", Publisher: " + textbook.getPublisher());
-            }
-        }
+        System.out.println("\nCourse Name: " + courseName);
+        System.out.println("\nInstructor:\n");
+        System.out.println("Instructor Full Name: " + instructorFirstName + " " + instructorLastName);
+        System.out.println("\nTextbook:\n");
+        System.out.println("Textbook Title: " + textbookTitle + ", Author: " + textbookAuthor);
     }
 }
