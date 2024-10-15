@@ -102,12 +102,13 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/abish/Desktop/Assignments/Assignment 1",
+    "last_opened_file_path": "C:/Users/abish/Desktop/Assignments/Homework 1",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -208,6 +209,7 @@
       <updated>1726458970271</updated>
       <workItem from="1726542559774" duration="20000" />
       <workItem from="1726542620549" duration="2093000" />
+      <workItem from="1726545698836" duration="2597000" />
     </task>
     <servers />
   </component>

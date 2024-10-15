@@ -1,0 +1,30 @@
+@startuml
+
+class File {
+    -name: String
+    +File(name: String)
+    +getName(): String
+    +setName(name: String): void
+    +toString(): String
+}
+
+class Folder {
+    -name: String
+    -subfolders: ArrayList<Folder>
+    -files: ArrayList<File>
+    +Folder()
+    +getName(): String
+    +setName(name: String): void
+    +removeSubfolder(subFolderName: String): void
+    +addSubfolder(subFolderName: String): void
+    +getSubfolder(subFolderName: String): Folder
+    +removeFile(file: File): boolean
+    +addFile(fileName: String): void
+    +toString(): String
+    +printFolderContents(): void
+}
+
+Folder *-- "0..*" Folder : "owns"
+Folder *-- "0..*" File : "owns"
+
+@enduml

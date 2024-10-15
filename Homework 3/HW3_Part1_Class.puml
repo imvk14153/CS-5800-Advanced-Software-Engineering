@@ -1,0 +1,50 @@
+@startuml
+
+class Employee {
+    -firstName: String
+    -lastName: String
+    -socialSecurityNumber: String
+    +getFirstName(): String
+    +setFirstName(firstName: String): void
+    +getLastName(): String
+    +setLastName(lastName: String): void
+    +getSocialSecurityNumber(): String
+    +setSocialSecurityNumber(socialSecurityNumber: String): void
+    +toString(): String
+}
+
+class SalariedEmployee extends Employee {
+    -weeklySalary: int
+    +getWeeklySalary(): int
+    +setWeeklySalary(weeklySalary: int): void
+    +toString(): String
+}
+
+class HourlyEmployee extends Employee {
+    -wage: int
+    -hoursWorked: int
+    +getWage(): int
+    +setWage(wage: int): void
+    +getHoursWorked(): int
+    +setHoursWorked(hoursWorked: int): void
+    +toString(): String
+}
+
+class CommisionEmployee extends Employee {
+    -commissionRate: int
+    -grossSales: int
+    +getCommissionRate(): int
+    +setCommissionRate(commissionRate: int): void
+    +getGrossSales(): int
+    +setGrossSales(grossSales: int): void
+    +toString(): String
+}
+
+class BaseEmployee extends Employee {
+    -baseSalary: int
+    +getBaseSalary(): int
+    +setBaseSalary(baseSalary: int): void
+    +toString(): String
+}
+
+@enduml
