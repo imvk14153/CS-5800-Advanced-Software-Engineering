@@ -21,7 +21,7 @@ public class TextEditorTest {
     }
 
     @Test
-    public void testCharacterFactoryCreatesAndReusesCharacterStyle() {
+    public void testCharacterFactoryCreatesAndReuses() {
         CharacterStyle style1 = factory.getStyle("Arial", "Red", 12);
         CharacterStyle style2 = factory.getStyle("Arial", "Red", 12);
         CharacterStyle style3 = factory.getStyle("Verdana", "Black", 16);
@@ -35,7 +35,6 @@ public class TextEditorTest {
         CharacterStyle style = factory.getStyle("Roboto", "Green", 12);
         document.addCharacter('V', style);
 
-        // Verify that the document has one character with the expected properties.
         assertEquals(1, document.getCharacter().size());
         assertEquals('V', document.getCharacter().get(0).getCharacter());
         assertEquals(style, document.getCharacter().get(0).getStyle());

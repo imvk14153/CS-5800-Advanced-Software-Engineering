@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class SongTest {
+public class SongServiceTest {
     private SongServiceRealServer realServer;
     private SongServiceProxyServer proxyServer;
     private List<Song> songs;
@@ -70,7 +70,7 @@ public class SongTest {
         assertTrue(cacheById.containsKey(1));
 
         Song cachedSong = proxyServer.searchById(1);
-        assertSame(song, cachedSong); // Confirm cached instance is used
+        assertSame(song, cachedSong);
     }
 
     @Test
@@ -84,7 +84,7 @@ public class SongTest {
         assertTrue(cacheByTitle.containsKey("Sugar"));
 
         List<Song> cachedResult = proxyServer.searchByTitle("Sugar");
-        assertSame(result, cachedResult); // Confirm cached result is used
+        assertSame(result, cachedResult);
     }
 
     @Test
@@ -98,7 +98,7 @@ public class SongTest {
         assertTrue(cacheByAlbum.containsKey("Hits"));
 
         List<Song> cachedResult = proxyServer.searchByAlbum("Hits");
-        assertSame(result, cachedResult); // Confirm cached result is used
+        assertSame(result, cachedResult);
     }
 
     @Test
@@ -106,29 +106,29 @@ public class SongTest {
         Song nonExistentSong = proxyServer.searchById(999);
         assertNull(nonExistentSong);
 
-        // Check cache is not updated for non-existent data
+        // Check cache isn't updated for new data
         Map<Integer, Song> cacheById = proxyServer.getCacheById();
         assertFalse(cacheById.containsKey(999));
     }
 
     @Test
     public void testProxySearchByTitle_notFound() {
-        List<Song> emptyResult = proxyServer.searchByTitle("NonExistentTitle");
+        List<Song> emptyResult = proxyServer.searchByTitle("NoTitle");
         assertTrue(emptyResult.isEmpty());
 
-        // Check cache is not updated for empty data
+        // Check cache isn't updated for empty data
         Map<String, List<Song>> cacheByTitle = proxyServer.getCacheByTitle();
-        assertFalse(cacheByTitle.containsKey("NonExistentTitle"));
+        assertFalse(cacheByTitle.containsKey("NoTitle"));
     }
 
     @Test
     public void testProxySearchByAlbum_notFound() {
-        List<Song> emptyResult = proxyServer.searchByAlbum("NonExistentAlbum");
+        List<Song> emptyResult = proxyServer.searchByAlbum("NoAlbum");
         assertTrue(emptyResult.isEmpty());
 
-        // Check cache is not updated for empty data
+        // Check cache isn't updated for empty data
         Map<String, List<Song>> cacheByAlbum = proxyServer.getCacheByAlbum();
-        assertFalse(cacheByAlbum.containsKey("NonExistentAlbum"));
+        assertFalse(cacheByAlbum.containsKey("NoAlbum"));
     }
 
     // Test for Song class
@@ -147,7 +147,6 @@ public class SongTest {
 
     @Test
     public void testDriverScenario() {
-        // Simulate Driver's usage of proxy server
         Song songById = proxyServer.searchById(1);
         assertNotNull(songById);
         assertEquals("Counting Stars", songById.getTitle());
@@ -160,7 +159,7 @@ public class SongTest {
         assertEquals(1, songsByAlbum.size());
         assertEquals("Counting Stars", songsByAlbum.get(0).getTitle());
 
-        // Check cache hits on repeated searches
+        // Check cache on repeated searches
         Song cachedSongById = proxyServer.searchById(1);
         assertSame(songById, cachedSongById);
 
@@ -178,7 +177,7 @@ public class SongTest {
         SongServiceProxyServer emptyProxy = new SongServiceProxyServer(emptyServer);
 
         assertNull(emptyProxy.searchById(1));
-        assertTrue(emptyProxy.searchByTitle("NonExistent").isEmpty());
-        assertTrue(emptyProxy.searchByAlbum("NonExistent").isEmpty());
+        assertTrue(emptyProxy.searchByTitle("NotExists").isEmpty());
+        assertTrue(emptyProxy.searchByAlbum("NotExists").isEmpty());
     }
 }
