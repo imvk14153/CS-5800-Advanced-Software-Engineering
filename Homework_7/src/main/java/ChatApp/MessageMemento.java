@@ -1,4 +1,4 @@
-package MessageApp;
+package ChatApp;
 
 import java.sql.Timestamp;
 

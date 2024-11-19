@@ -1,4 +1,4 @@
-package MessageApp;
+package ChatApp;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -7,11 +7,10 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MessageAppTest {
+class ChatAppTest {
 
     private ChatServer chatServer;
     private User userA, userB, userC;
