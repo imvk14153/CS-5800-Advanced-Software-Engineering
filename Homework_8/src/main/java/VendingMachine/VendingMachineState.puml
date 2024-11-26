@@ -1,0 +1,7 @@
+@startuml
+[*] --> IdleState : Idle State
+IdleState --> WaitingForMoneyState : Snack Selection
+WaitingForMoneyState --> DispensingSnackState : Money Paid
+DispensingSnackState --> IdleState : Snack Dispensed
+WaitingForMoneyState --> IdleState : Refund
+@enduml

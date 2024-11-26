@@ -1,0 +1,112 @@
+@startuml
+object "Document" as d {
+    characters : List<Character>
+    propertiesFactory : CharacterPropertiesFactory
+}
+
+object "CharacterPropertiesFactory" as cpf {
+    flyweights : Map<String, CharacterProperties>
+}
+
+object "CharacterProperties (Arial, Black, 16)" as charp1 {
+    font : Arial
+    color : Black
+    size : 16
+}
+object "CharacterProperties (Arial, Black, 14)" as charp2 {
+    font : Arial
+    color : Black
+    size : 14
+}
+object "CharacterProperties (Verdana, Blue, 18)" as charp3 {
+    font : Verdana
+    color : Blue
+    size : 18
+}
+object "CharacterProperties (Verdana, Red, 12)" as charp4 {
+    font : Verdana
+    color : Red
+    size : 12
+}
+
+object "Character H" as c1 {
+    character : H
+    characterProperty : charp1
+}
+object "Character e" as c2 {
+    character : e
+    characterProperty : charp2
+}
+object "Character l" as c3 {
+    character : l
+    characterProperty : charp2
+}
+object "Character o" as c4 {
+    character : o
+    characterProperty : charp2
+}
+object "Character W" as c5 {
+    character : W
+    characterProperty : charp1
+}
+object "Character r" as c6 {
+    character : r
+    characterProperty : charp2
+}
+object "Character d" as c7 {
+    character : d
+    characterProperty : charp2
+}
+object "Character C" as c8 {
+    character : C
+    characterProperty : charp3
+}
+object "Character S" as c9 {
+    character : S
+    characterProperty : charp3
+}
+object "Character 5" as c10 {
+    character : 5
+    characterProperty : charp4
+}
+object "Character 8" as c11 {
+    character : 8
+    characterProperty : charp4
+}
+object "Character 0 (x2)" as c12 {
+    character : 0
+    characterProperty : charp4
+}
+
+d --* cpf
+d --* c1
+d --* c2
+d --* c3
+d --* c4
+d --* c5
+d --* c6
+d --* c7
+d --* c8
+d --* c9
+d --* c10
+d --* c11
+d --* c12
+
+cpf --> charp1
+cpf --> charp2
+cpf --> charp3
+cpf --> charp4
+
+c1 --> charp1
+c2 --> charp2
+c3 --> charp2
+c4 --> charp2
+c5 --> charp1
+c6 --> charp2
+c7 --> charp2
+c8 --> charp3
+c9 --> charp3
+c10 --> charp4
+c11 --> charp4
+c12 --> charp4
+@enduml
