@@ -8,11 +8,11 @@ object "CharacterPropertiesFactory" as cpf {
     flyweights : Map<String, CharacterProperties>
 }
 
-'object "CharacterProperties (Arial, Black, 16)" as charp1 {
-'    font : Arial
-'    color : Black
-'    size : 16
-'}
+object "CharacterProperties (Arial, Black, 16)" as charp1 {
+    font : Arial
+    color : Black
+    size : 16
+}
 object "CharacterProperties (Arial, Black, 14)" as charp2 {
     font : Arial
     color : Black
@@ -97,7 +97,7 @@ d --* c10
 d --* c11
 d --* c12
 
-'cpf --> charp1
+cpf --> charp1
 cpf --> charp2
 cpf --> charp3
 cpf --> charp4
