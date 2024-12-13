@@ -1,0 +1,25 @@
+@startuml
+start
+:Open "Alerts";
+:Check for incoming alerts from Emergency Services;
+if (Are new alerts available?) then (Yes)
+  :Display new alerts;
+  :User selects an alert;
+  if (Is the alert critical?) then (Yes)
+    :Highlight the alert;
+    :Provide options - Nearby resources or Dismiss;
+    if (Whether the user choose Nearby resources?) then (Yes)
+      :Open "Nearby Resources";
+    else (No)
+      :Dismiss alert;
+    endif
+  else (No)
+    :Display non-critical alert details;
+    :User acknowledges alert;
+  endif
+else (No)
+  :Display "No new alerts";
+endif
+:Return to "Main Menu";
+stop
+@enduml

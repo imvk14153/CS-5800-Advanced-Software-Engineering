@@ -1,0 +1,19 @@
+@startuml
+start
+:Open "Quick Tips";
+:Display list of emergency scenarios\n (e.g., Fire, Tornado, Earthquake);
+:User selects an emergency type;
+:Retrieve and display tips for the selected emergency;
+if (Does the user want detailed info?) then (Yes)
+    :Provide external links for more information;
+    if (Are external links accessible?) then (Yes)
+        :Open external link in browser;
+    else (No)
+        :Display "Unable to access external resources";
+    endif
+else (No)
+    :User reviews tips;
+endif
+:Return to "Main menu";
+stop
+@enduml

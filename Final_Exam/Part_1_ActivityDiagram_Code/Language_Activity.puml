@@ -1,0 +1,14 @@
+@startuml
+start
+:Open "Language Settings";
+:Display list of available languages;
+:User selects a language;
+    while (Is the selected language supported?) is (No)
+        :Display "Language not supported";
+        backward: Prompt user to select another language;
+    endwhile (Yes)
+:Update app interface to selected language;
+:Confirm language change to the user;
+:Return to "Main Menu";
+stop
+@enduml

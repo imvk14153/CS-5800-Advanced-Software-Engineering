@@ -1,0 +1,40 @@
+@startuml
+actor User
+participant System
+User -> System: Open "Emergency Contacts"
+System -> User: Display list of saved contacts with "Add Contact" button on top
+alt User clicks "Add Contact"
+    User -> System: Enter new contact details (Name, Phone Number)
+    alt Phone number format valid?
+        System -> System: Save contact to the list
+        System -> User: Display "Contact added successfully"
+    else Invalid phone number
+        System -> User: Display "Invalid format"
+    end
+else User selects a saved contact
+    System -> User: Display options (Call, Edit, Delete)
+    User -> System: Select an option
+    alt Call
+        System -> System: Initiate call to selected contact
+    else Edit
+        User -> System: Modify contact details
+        alt Phone number format valid?
+            System -> System: Save changes
+            System -> User: Display "Contact updated successfully"
+        else Invalid phone number
+            System -> User: Display "Invalid format"
+        end
+    else Delete
+        System -> User: Confirm deletion
+        alt User confirms
+            System -> System: Remove contact from the list
+            System -> User: Display "Contact deleted successfully"
+        else User cancels deletion
+            System -> User: Cancel deletion
+        end
+    end
+else User browses through the contact list
+    System -> User: Display contact list
+end
+User -> System: Return to "Main Menu"
+@enduml

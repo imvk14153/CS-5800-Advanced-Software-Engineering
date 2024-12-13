@@ -1,0 +1,30 @@
+@startuml
+start
+:Open "Evacuation Checklist";
+    if (User clicks "+" to add item?) then (Yes)
+        :Add New Checklist Item dialog box;
+        :User enters item details;
+        if (User clicks "Add"?) then (Yes)
+            :Add the new item to the checklist;
+        else (No)
+            :Cancel adding item;
+        endif
+    else (No)
+        if (User clicks on a checklist item?) then (Yes)
+            :Mark item as "complete";
+        else (No)
+            if (User clicks delete icon?) then (Yes)
+                :Display "Delete Item" confirmation;
+                if (User confirms deletion?) then (Yes)
+                    :Delete the item from the checklist;
+                else (No)
+                    :Cancel deletion;
+                endif
+            else (No)
+                :Browse through checklist;
+            endif
+        endif
+    endif
+:Return to "Main Menu";
+stop
+@enduml

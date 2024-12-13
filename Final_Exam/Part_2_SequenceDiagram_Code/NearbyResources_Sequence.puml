@@ -1,0 +1,36 @@
+@startuml
+actor User
+actor "Emergency Services" as EmergencyServices
+participant System
+User -> System: Open "Nearby Resources"
+alt Is GPS enabled?
+    System -> System: Fetch location data from GPS
+else GPS not enabled
+    System -> User: Prompt to enable GPS
+    alt Did user enable GPS?
+        System -> System: Fetch location data from GPS
+    else User does not enable GPS
+        System -> User: Prompt to manually input ZIP code
+        User -> System: Enter ZIP code
+        System -> System: Validate ZIP code
+    end
+end
+System -> User: Ask to prioritize resource type
+alt User adds filter
+    User -> System: Select filter preferences
+    System -> System: Filter resources based on user preference
+else No filter added
+    System -> System: Display all resource types
+end
+System -> EmergencyServices: Fetch resource data
+alt Data fetch successful
+    EmergencyServices -> System: Return resource data
+    System -> User: Display list of resources
+    User -> System: Select a resource
+    System -> User: Show details for the selected resource
+else Data fetch unsuccessful
+    EmergencyServices -> System: Return error
+    System -> User: Display "Unable to fetch data"
+end
+User -> System: Return to "Main Menu"
+@enduml

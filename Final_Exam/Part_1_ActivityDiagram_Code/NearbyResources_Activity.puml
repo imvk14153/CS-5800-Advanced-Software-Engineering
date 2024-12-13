@@ -1,0 +1,30 @@
+@startuml
+start
+:Open "Nearby Resources";
+    if (Is GPS enabled?) then (Yes)
+        :Fetch location data from GPS;
+    else (No)
+        :Prompt user to enable GPS;
+        if (Did user enable GPS?) then (Yes)
+            :Fetch location data from GPS;
+        else (No)
+            :Prompt user to manually input ZIP code;
+            :Validate entered ZIP code;
+        endif;
+    endif;
+:Ask user to prioritize resource type;
+    if (User adds filter?) then (Yes)
+        :Filter resources based on user preference
+        (e.g., Shelters, Hospitals, etc.);
+    else (No)
+        :Display all resource types;
+    endif
+:Fetch resource data from Emergency Services;
+    while (Data fetch successful?) is (No)
+        :Display "Unable to fetch data";
+    endwhile (Yes)
+:Display list of resources;
+:Show details for the selected resource;
+:Return to "Main Menu";
+stop
+@enduml

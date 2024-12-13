@@ -1,0 +1,21 @@
+@startuml
+left to right direction
+actor User
+actor "Emergency Services" as ES
+rectangle EmergencyCompass {
+    usecase "Language\n(Users can set their preferred language for the app interface)" as UC1
+    usecase "Quick Tips\n(Access quick tips on safety precautions)" as UC2
+    usecase "Emergency Contacts\n(Add, remove, or update emergency contact information)" as UC3
+    usecase "Evacuation Checklist\n(Create, manage, or check off essential items for evacuation)" as UC4
+    usecase "Alerts\n(Get real-time emergency alerts)" as UC5
+    usecase "Nearby Resources\n(Find shelters, hospitals, or other emergency facilities)" as UC6
+}
+User --> UC1 : Set
+User --> UC2 : Access
+User --> UC3 : \nAdd/Remove
+User --> UC4 : \nManage
+User --> UC5 : \nReceive
+User --> UC6 : Locate
+ES -up-> UC5 : \nSend
+ES -up-> UC6 : Provide
+@enduml

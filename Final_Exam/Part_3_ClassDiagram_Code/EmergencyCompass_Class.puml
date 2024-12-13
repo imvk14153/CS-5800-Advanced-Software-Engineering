@@ -1,0 +1,99 @@
+@startuml
+class User {
+    - userId: int
+    - name: String
+    + login(): void
+    + logout(): void
+}
+class EmergencyContact {
+    - contactId: int
+    - name: String
+    - phoneNumber: String
+    + addContact(): void
+    + editContact(): void
+    + deleteContact(): void
+    + callContact(): void
+}
+class Alert {
+    - alertId: int
+    - title: String
+    - description: String
+    - isCritical: Boolean
+    - timestamp: Date
+    + fetchAlerts(): List<Alert>
+    + viewAlertDetails(): void
+    + dismissAlert(): void
+    + filterAlerts(criteria: String): List<Alert>
+}
+class NearbyResource {
+    - resourceId: int
+    - name: String
+    - type: String
+    - location: String
+    + fetchResources(): List<Resource>
+    + viewResourceDetails(): void
+    + filterResources(zipCode: String): List<Resource>
+}
+
+' ChecklistItem Class
+class ChecklistItem {
+    - itemId: int
+    - title: String
+    - isCompleted: Boolean
+    + addItem(): void
+    + removeItem(): void
+    + markAsCompleted(): void
+}
+
+' QuickTip Class
+class QuickTip {
+    - tipId: int
+    - title: String
+    - description: String
+    - externalLink: String
+    + viewTipDetails(): void
+    + accessExternalLink(): void
+}
+
+' LanguageSettings Class
+class LanguageSettings {
+    - languageId: int
+    - languageName: String
+    - isSupported: Boolean
+    + fetchAvailableLanguages(): List<String>
+    + setLanguage(languageId: int): void
+    + getCurrentLanguage(): String
+}
+
+' Supporting Classes
+class GPSModule {
+    - currentCoordinates: String
+    + fetchLocation(): String
+    + validateLocation(): Boolean
+}
+
+class NotificationService {
+    - notificationId: int
+    + sendNotification(): void
+    + receiveNotification(): void
+}
+
+class EmergencyServices {
+    + provideAlerts(): void
+    + provideResources(): void
+}
+
+' Relationships
+User "1" --> "*" EmergencyContact
+User "*" --> "*" Alert
+User "*" --> "*" NearbyResource
+User "1" --> "*" ChecklistItem
+User "*" --> "*" QuickTip
+User "1" --> "1" LanguageSettings
+User "1" --> "1" GPSModule
+
+EmergencyServices --> "*" Alert
+EmergencyServices --> "*" NearbyResource
+Alert "1" --> "1" NotificationService
+GPSModule "1" --> "1..*" NearbyResource
+@enduml
