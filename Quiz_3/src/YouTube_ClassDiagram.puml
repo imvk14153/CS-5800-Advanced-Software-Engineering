@@ -1,0 +1,83 @@
+@startuml
+
+class User {
+    +username: String
+    +email: String
+    +password: String
+    +login(): void
+    +logout(): void
+    +performSearch(query: String): List<Video>
+}
+
+class Video {
+    +videoTitle: String
+    +videoDescription: String
+    +timestamp: Date
+    +length: int
+    +viewCount: int
+    +likes: int
+    +dislikes: int
+    +play(): void
+    +pause(): void
+    +rewind(): void
+    +forward(): void
+}
+
+class Comment {
+    +text: String
+    +timestamp: Date
+    +likes: int
+    +dislikes: int
+    +addComment(): void
+    +editComment(): void
+    +deleteComment(): void
+}
+
+class Playlist {
+    +name: String
+    +videos: List<Video>
+    +addVideo(): void
+    +removeVideo(): void
+    +playVideo(): void
+}
+
+class Channel {
+    +name: String
+    +subscribers: List<User>
+    +videos: List<Video>
+    +subscribe(): void
+    +unsubscribe(): void
+}
+
+class Queue {
+    +queuedVideos: List<Video>
+    +addToQueue(): void
+    +removeFromQueue(): void
+    +playNext(): void
+}
+
+class Subscriptions {
+    +channels: List<Channel>
+    +addChannel(): void
+    +removeChannel(): void
+}
+
+class Search {
+    +perform(query: String, user: User): List<Video>
+}
+
+User "1" --> "0..*" Playlist : maintains
+User "1" --> "1..*" Video : watches
+User "1" --> "0..*" Channel : subscribe
+User "1" --> "0..*" Comment : post
+User "1" --> "0..*" Search : performs
+User "1" --> "1" Subscriptions : has
+Playlist "1" --> "1..*" Video : includes
+Queue "1" --> "1..*" Video : includes
+Channel "1" --> "0..*" Video : uploads
+Channel "1" --> "0..*" User : subscribed by
+Video "1" --> "0..*" Comment : receives
+Search "1" --> "0..*" Video : finds
+Subscriptions "1" --> "0..*" Channel : includes
+
+@enduml
